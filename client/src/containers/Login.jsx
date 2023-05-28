@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { LoginBg, Logo } from "../assests";
 import { LoginInput } from "../components";
 import { FaEnvelope, FaLock, FcGoogle } from "../assests/icons";
@@ -23,24 +23,25 @@ const Login = () => {
   const provider = new GoogleAuthProvider();
 
   const navigate = useNavigate()
-  const dispatch =useDispatch()
+  const dispatch = useDispatch()
 
   const user = useSelector(state => state.user);
   const alert = useSelector(state => state.alert);
 
-  useEffect(() =>{
-    if(user){
-      navigate("/", {replace: true});
+  useEffect(() => {
+    if (user) {
+      navigate("/", { replace: true });
     }
-  },[user]);
+  }, [user]);
 
   const loginWithGoogle = async () => {
     await signInWithPopup(firebaseAuth, provider).then((userCred) => {
-      firebaseAuth.onAuthStateChanged(cred => {
+      firebaseAuth.onAuthStateChanged((cred) => {
         if (cred) {
           cred.getIdToken().then((token) => {
             validateUserJWTToken(token).then((data) => {
-             // console.log(data);
+              //console.log(token);
+              console.log(data);
               dispatch(setUserDetails(data));
             })
             navigate("/", { replace: true });
@@ -60,11 +61,11 @@ const Login = () => {
         setUserEmail("")
         setPassword("")
         setconfirm_password("")
-        await createUserWithEmailAndPassword(firebaseAuth, userEmail, password).then(userCred => {
-          firebaseAuth.onAuthStateChanged(cred => {
+        await createUserWithEmailAndPassword(firebaseAuth, userEmail, password).then((userCred) => {
+          firebaseAuth.onAuthStateChanged((cred) => {
             if (cred) {
-              cred.getIdToken().then(token => {
-                validateUserJWTToken(token).then(data => {
+              cred.getIdToken().then((token) => {
+                validateUserJWTToken(token).then((data) => {
                   console.log(data);
                   dispatch(setUserDetails(data));
                 })
@@ -83,11 +84,11 @@ const Login = () => {
 
   const signInWithEmailPass = async () => {
     if (userEmail !== "" && password !== "") {
-      await signInWithEmailAndPassword(firebaseAuth, userEmail, password).then(userCred => {
-        firebaseAuth.onAuthStateChanged(cred => {
+      await signInWithEmailAndPassword(firebaseAuth, userEmail, password).then((userCred) => {
+        firebaseAuth.onAuthStateChanged((cred) => {
           if (cred) {
-            cred.getIdToken().then(token => {
-              validateUserJWTToken(token).then(data => {
+            cred.getIdToken().then((token) => {
+              validateUserJWTToken(token).then((data) => {
                 console.log(data);
                 dispatch(setUserDetails(data));
               });
@@ -103,10 +104,10 @@ const Login = () => {
     }
   };
   //if(user) return navigate("/", {replace:true});
-//action redux config started redux installed globally
-//reducer
-// store(globalised)
-//dispatched 
+  //action redux config started redux installed globally
+  //reducer
+  // store(globalised)
+  //dispatched 
   return (
     <div className="w-screen h-screen relative overflow-hidden flex">
       {/* background image */}
