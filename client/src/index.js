@@ -4,7 +4,7 @@ import App from "./App";
 import "./index.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import {createStore} from "redux";
+import { createStore } from "redux";
 import { Provider, provider } from "react-redux";
 import myReducers from "./context/reducers";
 
@@ -19,7 +19,7 @@ root.render(
       <AnimatePresence>
         <Provider store={myStore}>
 
-        <App />
+          <App />
         </Provider>
       </AnimatePresence>
     </Router>
