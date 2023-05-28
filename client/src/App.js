@@ -35,7 +35,7 @@ const App = () => {
   return (
     <div className="w-screen min-h-screen h-auto flex flex-col items-center justify-center">
       { isLoading && (
-        <motion.div { ...fadeInOut} className="fixed z-50 inset-0 bg-lightgrey backdrop-blur-md flex items-center justify-center w-full">
+        <motion.div { ...fadeInOut} className="fixed z-50 inset-0 bg-cardOverlay backdrop-blur-md flex items-center justify-center w-full">
           <MainLoader/>
         </motion.div>
       )
