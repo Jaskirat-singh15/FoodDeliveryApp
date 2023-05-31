@@ -36,7 +36,7 @@ const MainLoader = () => {
           <clipPath id="clip">
             <rect
               className="square s1"
-              X="0"
+              x="0"
               y="0"
               rx="12"
               ry="12"
@@ -46,7 +46,7 @@ const MainLoader = () => {
 
             <rect
               className="square s2"
-              X="100"
+              x="100"
               y="0"
               rx="12"
               ry="12"
@@ -56,7 +56,7 @@ const MainLoader = () => {
 
             <rect
               className="square s3"
-              X="200"
+              x="200"
               y="0"
               rx="12"
               ry="12"
@@ -66,7 +66,7 @@ const MainLoader = () => {
 
             <rect
               className="square s4"
-              X="0"
+              x="0"
               y="100"
               rx="12"
               ry="12"
@@ -76,7 +76,7 @@ const MainLoader = () => {
 
             <rect
               className="square s5"
-              X="200"
+              x="200"
               y="100"
               rx="12"
               ry="12"
@@ -86,7 +86,7 @@ const MainLoader = () => {
 
             <rect
               className="square s6"
-              X="0"
+              x="0"
               y="200"
               rx="12"
               ry="12"
@@ -96,7 +96,7 @@ const MainLoader = () => {
 
             <rect
               className="square s7"
-              X="100"
+              x="100"
               y="200"
               rx="12"
               ry="12"
