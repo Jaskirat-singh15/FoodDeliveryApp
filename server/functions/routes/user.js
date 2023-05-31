@@ -29,35 +29,28 @@ router.get("/jwtVerification", async (req, res) => {
 });
 
 const listALLUsers = async (nextpagetoken) => {
-  admin
-    .auth()
-    .listUsers(1000, nextpagetoken)
-    .then((listuserresult) => {
-      listuserresult.users.forEach((rec) => {
-        data.push(rec.toJSON());
-      });
-      if (listuserresult.pageToken) {
-        listALLUsers(listuserresult.pageToken);
-      }
-    })
-    .catch((err) => console.log(err));
+    admin
+        .auth()
+        .listUsers(1000, nextpagetoken)
+        .then((listuserresult) => {
+            listuserresult.users.forEach((rec) => {
+                data.push(rec.toJSON());
+            });
+            if (listuserresult.pageToken) { listALLUsers(listuserresult.pageToken); }
+        })
+        .catch((err) => console.log(err));
 };
 
 listALLUsers();
 
 router.get("/all", async (req, res) => {
-  listALLUsers();
-
-  try {
-    // console.log(data)
-    return res.status(200).send({ success: true, data: data });
-   
-  } catch (err) {
-    return res.send({
-      success: false,
-      msg: `Error in listing users :, ${err}`,
-    });
-  }
+    listALLUsers();
+    try {
+        return res.status(200).send({ success: true, data: data, dataCount: data.length });
+    }
+    catch (err) {
+        return res.send({ success: false, msg: `Error in listing users :, ${err}` });
+    }
 });
 
 module.exports = router;

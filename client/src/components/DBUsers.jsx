@@ -9,13 +9,13 @@ const DBUsers = () => {
   const allUsers = useSelector((state) => state.allUsers);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (!allUsers) {
-      getAllUsers().then((data) => {
-        dispatch(setAllUserDetails(data));
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!allUsers) {
+  //     getAllUsers().then((data) => {
+  //       dispatch(setAllUserDetails(data));
+  //     });
+  //   }
+  // }, []);
   // console.log(allUsers);
 
   return (
