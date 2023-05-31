@@ -5,24 +5,24 @@ import { setAllProducts } from '../context/actions/productActions';
 import { setAllUserDetails } from '../context/actions/allUsersAction';
 
 const DBHome = () => {
-  const products = useSelector((state) => state.products);
-  const dispatch = useDispatch();
+  // const products = useSelector((state) => state.products);
+  // const dispatch = useDispatch();
 
-  const allUsers = useSelector((state)=> state.allUsers);
+  // const allUsers = useSelector((state)=> state.allUsers);
 
-  useEffect(() => {
-    if(!allUsers) {
-      getAllUsers().then((data)=>{ dispatch(setAllUserDetails(data)); });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if(!allUsers) {
+  //     getAllUsers().then((data)=>{ dispatch(setAllUserDetails(data)); });
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    if(!products) {
-      getAllProducts().then((data)=> {
-        dispatch(setAllProducts(data));
-      })
-    }
-  }, []);
+  // useEffect(() => {
+  //   if(!products) {
+  //     getAllProducts().then((data)=> {
+  //       dispatch(setAllProducts(data));
+  //     })
+  //   }
+  // }, []);
   
   return (
     
