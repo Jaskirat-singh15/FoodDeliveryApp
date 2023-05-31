@@ -26,7 +26,7 @@ router.get("/jwtVerification", async (req, res) => {
 
 
 const listALLUsers = async (nextpagetoken) => {
-        admin
+    admin
         .auth()
         .listUsers(1000, nextpagetoken)
         .then((listuserresult) => {
@@ -36,18 +36,18 @@ const listALLUsers = async (nextpagetoken) => {
             if (listuserresult.pageToken) { listALLUsers(listuserresult.pageToken); }
         })
         .catch((err) => console.log(err));
-    };
+};
 
 listALLUsers();
 
-router.get("/all", async (req, res) => { 
+router.get("/all", async (req, res) => {
     listALLUsers();
     try {
-        return res.status(200).send({ success: true, data: data });
-    } 
+        return res.status(200).send({ success: true, data: data, dataCount: data.length });
+    }
     catch (err) {
-        return res.send({success: false,msg: `Error in listing users :, ${err}`});
-    };
+        return res.send({ success: false, msg: `Error in listing users :, ${err}` });
+    }
 });
 
 module.exports = router;
