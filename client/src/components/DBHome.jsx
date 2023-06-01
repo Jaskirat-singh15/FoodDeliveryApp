@@ -17,13 +17,13 @@ const DBHome = () => {
   const chinese = products?.filter(item => item.product_category === "chinese");
   const bread = products?.filter(item => item.product_category === "bread");
 
-  // const allUsers = useSelector((state) => state.allUsers);
+  const allUsers = useSelector((state) => state.allUsers);
 
-  // useEffect(() => {
-  //   if (!allUsers) {
-  //     getAllUsers().then((data) => { dispatch(setAllUserDetails(data)); });
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (!allUsers) {
+      getAllUsers().then((data) => { dispatch(setAllUserDetails(data)); });
+    }
+  }, []);
 
   useEffect(() => {
     if (!products) {
