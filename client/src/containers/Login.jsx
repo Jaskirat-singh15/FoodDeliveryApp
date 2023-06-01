@@ -4,14 +4,20 @@ import { LoginInput } from "../components";
 import { FaEnvelope, FaLock, FcGoogle } from "../assests/icons";
 import { motion } from "framer-motion";
 import { buttonClick } from "../animations";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { Alert } from "../components/Alert";
-import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { app } from "../config/firebase.config";
 import { validateUserJWTToken } from "../api";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserDetails } from "../context/actions/userActions";
-import { alertWarning } from "../context/actions/alertAction";
+import { alertInfo, alertWarning } from "../context/actions/alertAction";
 
 const Login = () => {
   const [userEmail, setUserEmail] = useState("");
@@ -22,17 +28,19 @@ const Login = () => {
   const firebaseAuth = getAuth(app);
   const provider = new GoogleAuthProvider();
 
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const user = useSelector(state => state.user);
-  const alert = useSelector(state => state.alert);
+  const user = useSelector((state) => state.user);
+  const alert = useSelector((state) => state.alert);
 
   useEffect(() => {
     if (user) {
       navigate("/", { replace: true });
     }
   }, [user]);
+
+  // console.log(user);
 
   const loginWithGoogle = async () => {
     await signInWithPopup(firebaseAuth, provider).then((userCred) => {
@@ -43,7 +51,7 @@ const Login = () => {
               //console.log(token);
               console.log(data);
               dispatch(setUserDetails(data));
-            })
+            });
             navigate("/", { replace: true });
           });
         }
@@ -54,60 +62,63 @@ const Login = () => {
   const signUpWithEmailPass = async () => {
     if (userEmail === "" || password === "" || confirm_password === "") {
       // alert message
-      //dispatch(alertInfo('REQUIRED FIELDS SHOULD NOT BE EMPTY'));
-    }
-    else {
+      dispatch(alertInfo("REQUIRED FIELDS SHOULD NOT BE EMPTY"));
+    } else {
       if (password === confirm_password) {
-        setUserEmail("")
-        setPassword("")
-        setconfirm_password("")
-        await createUserWithEmailAndPassword(firebaseAuth, userEmail, password).then((userCred) => {
+        setUserEmail("");
+        setPassword("");
+        setconfirm_password("");
+        await createUserWithEmailAndPassword(
+          firebaseAuth,
+          userEmail,
+          password
+        ).then((userCred) => {
           firebaseAuth.onAuthStateChanged((cred) => {
             if (cred) {
               cred.getIdToken().then((token) => {
                 validateUserJWTToken(token).then((data) => {
                   console.log(data);
                   dispatch(setUserDetails(data));
-                })
+                });
                 navigate("/", { replace: true });
               });
             }
           });
-        })
-      }
-      else {
+        });
+      } else {
         // alert message
-        dispatch(alertWarning('password doesnot match'));
+        dispatch(alertWarning("password doesnot match"));
       }
     }
   };
 
   const signInWithEmailPass = async () => {
     if (userEmail !== "" && password !== "") {
-      await signInWithEmailAndPassword(firebaseAuth, userEmail, password).then((userCred) => {
-        firebaseAuth.onAuthStateChanged((cred) => {
-          if (cred) {
-            cred.getIdToken().then((token) => {
-              validateUserJWTToken(token).then((data) => {
-                console.log(data);
-                dispatch(setUserDetails(data));
+      await signInWithEmailAndPassword(firebaseAuth, userEmail, password).then(
+        (userCred) => {
+          firebaseAuth.onAuthStateChanged((cred) => {
+            if (cred) {
+              cred.getIdToken().then((token) => {
+                validateUserJWTToken(token).then((data) => {
+                  console.log(data);
+                  dispatch(setUserDetails(data));
+                });
+                navigate("/", { replace: true });
               });
-              navigate("/", { replace: true });
-            });
-          }
-        });
-      })
-    }
-    else {
+            }
+          });
+        }
+      );
+    } else {
       // alert message
-      dispatch(alertWarning('Password doesnot match'));
+      dispatch(alertWarning("Password doesnot match"));
     }
   };
-  //if(user) return navigate("/", {replace:true});
+  // if(user) return navigate("/", {replace:true});
   //action redux config started redux installed globally
   //reducer
   // store(globalised)
-  //dispatched 
+  //dispatched
   return (
     <div className="w-screen h-screen relative overflow-hidden flex">
       {/* background image */}

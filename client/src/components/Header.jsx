@@ -75,7 +75,7 @@ const Header = () => {
           {cart?.length > 0 && (
             <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center absolute -top-4 -right-1">
               <p className="text-primary text-base font-semibold">
-              {cart?.length}
+                {cart?.length}
               </p>
             </div>
           )}

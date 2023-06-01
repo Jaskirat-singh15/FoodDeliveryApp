@@ -5,8 +5,11 @@ import Delivery from '../assests/img/delivery.png';
 import HeroBg from '../assests/img/heroBg.png';
 import { buttonClick, staggerFadeInOut } from "../animations";
 import { randomData } from "../utils/styles";
+import { formControlClasses } from "@mui/material";
+
 
 const Home = () => {
+    
     return (
         <motion.div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="flex flex-col items-start justify-start gap-6">
