@@ -8,7 +8,7 @@ import { app } from "./config/firebase.config";
 import { setUserDetails } from "./context/actions/userActions";
 import { fadeInOut } from "./animations";
 import { motion } from "framer-motion";
-import { Alert, MainLoader } from "./components";
+import { Alert, CheckOutSuccess, MainLoader } from "./components";
 import { setCartItems } from "./context/actions/cartActions";
 const App = () => {
   const firebaseAuth = getAuth(app);
@@ -53,6 +53,7 @@ const App = () => {
         <Route path="/*" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard/*" element={<Dashboard />} />
+        <Route path="/checkout-success" element={<CheckOutSuccess/>}/>
       </Routes>
       {alert?.type && (
         <Alert type={alert?.type} message={alert?.message}>
