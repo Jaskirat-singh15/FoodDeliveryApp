@@ -28,6 +28,7 @@ const App = () => {
                 dispatch(setCartItems(items));
               });
             }
+            
             dispatch(setUserDetails(data));
           });
         });

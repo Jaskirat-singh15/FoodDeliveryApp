@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { DataTable } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { HiCurrencyRupee } from "../assests/icons";
@@ -9,9 +9,18 @@ import { alertNull, alertSuccess } from "../context/actions/alertAction";
 const DBItems = () => {
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!products) {
+      getAllProducts().then((data) => {
+        dispatch(setAllProducts(data));
+      })
+    }
+  });
+
   return (
     <div className="flex items-center justify-self-center gap-4 pt-6 w-full">
-      <DataTable
+      {(products) && (<DataTable
         columns={[
           {
             title: "Image",
@@ -20,6 +29,7 @@ const DBItems = () => {
               <img
                 className="w-32 h-16 object-contain rounded-md"
                 src={rowData.imageURL}
+                alt=""
               />
             ),
           },
@@ -37,23 +47,7 @@ const DBItems = () => {
           },
         ]}
         data={products}
-        // data={(query) =>
-        //   new Promise((resolve, reject) => {
-        //     let url =
-        //       "http://127.0.0.1:5001/feastexpress-4b58f/us-central1/app/api/products/all?";
-        //     url += "per_page=" + query.pageSize;
-        //     url += "&page=" + (query.page + 1);
-        //     fetch(url)
-        //       .then((response) => response.json())
-        //       .then((result) => {
-        //         resolve({
-        //           data: result.data,
-        //           page: result.page - 1,
-        //           totalCount: result.total,
-        //         });
-        //       });
-        //   })
-        // }
+        
         title="List of Products"
         actions={[
           {
@@ -84,7 +78,7 @@ const DBItems = () => {
             },
           },
         ]}
-      />
+      />)}
     </div>
   );
 };

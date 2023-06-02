@@ -5,7 +5,7 @@ import { FaEnvelope, FaLock, FcGoogle } from "../assests/icons";
 import { motion } from "framer-motion";
 import { buttonClick } from "../animations";
 import { useNavigate } from "react-router-dom";
-import { Alert } from "../components/Alert";
+// import { Alert } from "../components/Alert";
 import {
   getAuth,
   signInWithPopup,
@@ -40,16 +40,14 @@ const Login = () => {
     }
   }, [user]);
 
-  // console.log(user);
-
   const loginWithGoogle = async () => {
     await signInWithPopup(firebaseAuth, provider).then((userCred) => {
       firebaseAuth.onAuthStateChanged((cred) => {
         if (cred) {
           cred.getIdToken().then((token) => {
             validateUserJWTToken(token).then((data) => {
-              //console.log(token);
-              console.log(data);
+              // console.log(token);
+              // console.log(data);
               dispatch(setUserDetails(data));
             });
             navigate("/", { replace: true });
@@ -62,7 +60,7 @@ const Login = () => {
   const signUpWithEmailPass = async () => {
     if (userEmail === "" || password === "" || confirm_password === "") {
       // alert message
-      dispatch(alertInfo("REQUIRED FIELDS SHOULD NOT BE EMPTY"));
+      dispatch(alertInfo('REQUIRED FIELDS SHOULD NOT BE EMPTY'));
     } else {
       if (password === confirm_password) {
         setUserEmail("");
@@ -114,7 +112,7 @@ const Login = () => {
       dispatch(alertWarning("Password doesnot match"));
     }
   };
-  // if(user) return navigate("/", {replace:true});
+  //if(user) return navigate("/", {replace:true});
   //action redux config started redux installed globally
   //reducer
   // store(globalised)

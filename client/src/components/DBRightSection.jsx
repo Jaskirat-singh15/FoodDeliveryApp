@@ -1,5 +1,12 @@
 import React from "react";
-import { DBHeader, DBHome, DBItems, DBNewItem, DBOrders, DBUsers } from "../components";
+import {
+  DBHeader,
+  DBHome,
+  DBItems,
+  DBNewItem,
+  DBOrders,
+  DBUsers,
+} from "../components";
 import { Route, Routes } from "react-router-dom";
 
 const DBRightSection = () => {

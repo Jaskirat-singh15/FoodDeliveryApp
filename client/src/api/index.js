@@ -10,6 +10,7 @@ export const validateUserJWTToken = async (token) => {
     });
     return res.data.data;
   } catch (err) {
+    
     return null;
   }
 };
