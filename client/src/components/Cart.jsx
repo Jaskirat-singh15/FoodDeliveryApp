@@ -11,6 +11,7 @@ import axios from 'axios'
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
   const [total, setTotal] = useState(0);
   useEffect(() => {
@@ -24,11 +25,15 @@ const Cart = () => {
   }, [cart]);
 
   const handleCheckOut =  ()=>{
-    
-    
-    axios.post(`${baseURL}/api/products/create-checkout-session`).then(
-      (res)=>{
+    const data ={
+      user:user,
+      cart:cart,
+      total: total,
+    }
+
+    axios.post(`${baseURL}/api/products/create-checkout-session`,{data}).then( (res)=>{
         console.log(res);
+        window.location.href = res.data.url;
       }
     ).catch((err) => console.log(err));
   };
