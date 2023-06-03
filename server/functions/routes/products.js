@@ -179,19 +179,61 @@ router.get("/getCartItems/:user_id", async (req, res) => {
   })();
 });
 router.post('/create-checkout-session', async (req, res) => {
+  const line_items= req.body.data.cart.map(item => {
+    return{
+      price_data: {
+              currency: 'inr',
+              product_data: {
+                name: item.product_name,
+                images : [item.imageURL],
+                metadata :  {
+                  id:item.productId,
+                }
+              },
+              unit_amount: item.product_price*100,
+            },
+            quantity: item.quantity,
+    }
+  })
   const session = await stripe.checkout.sessions.create({
-    line_items: [
+    
+    
+
+    // paymemt_method_types:["card"],
+    shipping_address_collection:{allowed_countries:["IN","US","CA"]},
+    shipping_options:[
       {
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: 'T-shirt',
+        shipping_rate_data:{
+          type:"fixed_amount",
+          fixed_amount:{amount:0,currency:"inr"},
+          display_name:"Free shipping",
+          delivery_estimate:{
+            minimum:{unit:"hour",value:3},
+            maximum:{unit:"hour",value:5},
           },
-          unit_amount: 2000,
         },
-        quantity: 1,
+      },
+      {
+        shipping_rate_data:{
+          type:"fixed_amount",
+          fixed_amount:{amount:1000,currency:"inr"},
+          display_name:"express",
+          delivery_estimate:{
+            minimum:{unit:"hour",value:1},
+            maximum:{unit:"hour",value:2},
+          },
+        },
       },
     ],
+    phone_number_collection:{
+      enabled:true,
+    },
+
+    
+     
+    
+
+    line_items,
     mode: 'payment',
     success_url: `${process.env.CLIENT_URL}/checkout-success`,
     cancel_url: `${process.env.CLIENT_URL}/`,
