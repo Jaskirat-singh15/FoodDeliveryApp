@@ -4,9 +4,10 @@ import { buttonClick, slideIn, staggerFadeInOut } from '../animations'
 import { setCartOff } from '../context/actions/displayCartActions'
 import { BiChevronsRight, FcClearFilters, HiCurrencyRupee } from '../assests/icons'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllCartItems, increaseItemQuantity } from '../api'
+import { baseURL, getAllCartItems, increaseItemQuantity } from '../api'
 import { setCartItems } from '../context/actions/cartActions'
 import { alertNull, alertSuccess } from '../context/actions/alertAction'
+import axios from 'axios'
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,17 @@ const Cart = () => {
       });
     }
   }, [cart]);
+
+  const handleCheckOut =  ()=>{
+    
+    
+    axios.post(`${baseURL}/api/products/create-checkout-session`).then(
+      (res)=>{
+        console.log(res);
+      }
+    ).catch((err) => console.log(err));
+  };
+
   return (
     <motion.div {...slideIn} className='fixed z-50 top-0 right-0 w-300 md:w-508 bg-lightOverlay backdrop-blur-md shadow-md h-screen'>
       <div className='w-full flex items-center justify-between py-4 pb-12 px-6'>
@@ -46,6 +58,9 @@ const Cart = () => {
                 <HiCurrencyRupee className='text-primary' /> {total}
               </p>
             </div>
+            <motion.div {...buttonClick} className="bg-orange-400 w-[70%] px-4 py-3 text-xl text-headingColor font-semibold hover:bg-orange-500 drop-shadow-md rounded-2xl" onClick={handleCheckOut}>
+              Check Out
+            </motion.div>
           </div>
         </> : <>
           <h1 className='text-3xl text-primary font-bold'>Empty Cart</h1>
