@@ -9,15 +9,18 @@ import { setOrders } from "../context/actions/ordersAction";
 const OrderData = ({ index, data, admin }) => {
   const dispatch = useDispatch();
 
-  const handleClick = (orderId, sts) => {
-    updateOrderSts(orderId, sts).then((response) => {
-        // console.log(response);
-      getAllOrder().then((data) => {
-        console.log(data);
-        dispatch(setOrders(data));
-      });
-    });
-  };
+
+    const handleClick = (orderId,sts)=>{
+        updateOrderSts(orderId,sts).then((response)=>{
+            getAllOrder().then((data) =>{
+                dispatch(setOrders(data));
+          
+            });
+        });
+    };
+
+  
+
   return (
     <motion.div
       {...staggerFadeInOut(index)}
@@ -78,6 +81,18 @@ const OrderData = ({ index, data, admin }) => {
             </div>
           )}
         </div>
+
+    <div className='flex items-center justify-start flex-wrap w-full'>
+            <div>
+                {data?.items && data.items.map((item,j)=>(
+                    <motion.div {...staggerFadeInOut(j)}
+                    key={j}
+                    className='flex items-cwnter justify-center gap-2'>
+                        <img src={item.imageURL} className='w-10 h-10 object-contain' alt="" />
+            
+            <div className='flex item-start flec-col'>
+                <p className='text-base font-semibold text-headingColor'>
+
       </div>
       <div className="flex items-center justify-start flex-wrap w-full">
         <div>
@@ -96,6 +111,7 @@ const OrderData = ({ index, data, admin }) => {
 
                 <div className="flex item-start flec-col">
                   <p className="text-base font-semibold text-headingColor">
+
                     {item.product_name}
                   </p>
                   <div className="flex items-center gap-2 text-textColor">
