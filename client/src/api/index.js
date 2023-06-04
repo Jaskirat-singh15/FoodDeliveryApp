@@ -106,3 +106,15 @@ export const getAllOrder = async () => {
     return null;
   }
 };
+// update the order sts
+
+export const updateOrderSts = async (order_id,sts)=>{
+  try {
+    const res =await axios.post(
+      `${baseURL}/api/products/updateOrder/${order_id}`,null, {params : {sts:sts}}
+    );
+    return res.data.data;
+  } catch (error) {
+    return null;
+  }
+};
