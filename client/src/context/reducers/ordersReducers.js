@@ -1,10 +1,10 @@
 const ordersReducers =(state = null,action)=>{
     switch(action.type){
-        case "SET_ORDERS":
-            return action.order;
-
         case "GET_ORDERS":
-            return state;
+        return state;
+
+        case "SET_ORDERS":
+            return action.orders;    
         
         default:
             return state;

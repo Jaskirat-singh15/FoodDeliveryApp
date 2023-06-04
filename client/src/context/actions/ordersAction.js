@@ -7,6 +7,5 @@ export const setOrders = (data)=>{
 export const getOrders = ()=>{
     return{
         type:"GET_ORDERS",
-        
     };
 };
