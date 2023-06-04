@@ -11,8 +11,10 @@ const OrderData = ({index,data,admin}) => {
 
     const handleClick = (orderId,sts)=>{
         updateOrderSts(orderId,sts).then((response)=>{
+            console.log("inside updateOrderSts ",sts,response,orderId);
             getAllOrder().then((data) =>{
                 dispatch(setOrders(data));
+                console.log("in dispatch",data);
             });
         });
     };
@@ -66,7 +68,9 @@ const OrderData = ({index,data,admin}) => {
     <div className='flex items-center justify-start flex-wrap w-full'>
             <div>
                 {data?.items && data.items.map((item,j)=>(
-                    <motion.div {...staggerFadeInOut(j)} className='flex items-cwnter justify-center gap-2'>
+                    <motion.div {...staggerFadeInOut(j)}
+                    key={j}
+                    className='flex items-cwnter justify-center gap-2'>
                         <img src={item.imageURL} className='w-10 h-10 object-contain' alt="" />
             
             <div className='flex item-start flec-col'>
