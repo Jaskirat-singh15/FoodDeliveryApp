@@ -11,10 +11,10 @@ const OrderData = ({index,data,admin}) => {
 
     const handleClick = (orderId,sts)=>{
         updateOrderSts(orderId,sts).then((response)=>{
-            console.log("inside updateOrderSts ",sts,response,orderId);
+            // console.log("inside updateOrderSts ",sts,response,orderId);
             getAllOrder().then((data) =>{
                 dispatch(setOrders(data));
-                console.log("in dispatch",data);
+                // console.log("in dispatch",data);
             });
         });
     };

@@ -113,7 +113,7 @@ export const updateOrderSts = async (order_id,sts)=>{
     const res =await axios.post(
       `${baseURL}/api/products/updateOrder/${order_id}`,null, {params : {sts:sts}}
     );
-    console.log("in api try",sts);
+    // console.log("in api try",sts);
     return res.data.data;
   } catch (error) {
     return null;
