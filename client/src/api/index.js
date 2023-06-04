@@ -96,3 +96,25 @@ export const increaseItemQuantity = async (user_id, productId, type) => {
     return null;
   }
 };
+export const getAllOrder = async () => {
+  try {
+    const res = await axios.get(
+      `${baseURL}/api/products/orders`
+    );
+    return res.data.data;
+  } catch (err) {
+    return null;
+  }
+};
+// update the order sts
+
+export const updateOrderSts = async (order_id,sts)=>{
+  try {
+    const res =await axios.post(
+      `${baseURL}/api/products/updateOrder/${order_id}`,null, {params : {sts:sts}}
+    );
+    return res.data.data;
+  } catch (error) {
+    return null;
+  }
+};

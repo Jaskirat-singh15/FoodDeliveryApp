@@ -61,7 +61,7 @@ const DBLeftSection = () => {
           to={"/dashboard/users"}
           className={({ isActive }) =>
             isActive
-              ? `${isActiveStyles} px-4 py-2 border-l-8 border-red-500 `
+              ? `${isActiveStyles} px-4 py-2 b-l-8 border-red-500 `
               : isNotActiveStyles
           }
         >
