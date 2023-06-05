@@ -376,28 +376,16 @@ router.post("/updateOrder/:order_id", async (req, res) => {
   const order_id = req.params.order_id;
   const sts = req.query.sts;
 
-  // console.log("in product before try",sts);
-
   try {
-    // console.log("in try before await",sts ,order_id);
     const updatedItem = await db
-
-    .collection("order")
-    .doc(`/${order_id}/`)
-    .update({sts});
-    // console.log("in products try");
-    return res.status(200).send({success:true,data: updatedItem});
-  } catch (error) {
-    // console.log("in error",error);
-    return res.send({success:false,msg:`Error : ,${error}`});
 
       .collection("order")
       .doc(`/${order_id}/`)
       .update({ sts });
-    return res.status(200).send({ success: true, data: updatedItem });
-  } catch (err) {
-    return res.send({ success: false, msg: `Error : ${err}` });
 
+    return res.status(200).send({ success: true, data: updatedItem });
+  } catch (error) {
+    return res.send({ success: false, msg: `Error : ,${error}` });
   }
 });
 
