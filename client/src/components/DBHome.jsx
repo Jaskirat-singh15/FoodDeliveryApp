@@ -17,6 +17,10 @@ const DBHome = () => {
     (item) => item.product_category === "chinese"
   );
   const bread = products?.filter((item) => item.product_category === "bread");
+  const biscuits = products?.filter(
+    (item) => item.product_category === "biscuits"
+  );
+  const chips = products?.filter((item) => item.product_category === "chips");
 
   return (
     <div className="flex items-center justify-center flex-col pt-6 w-full h-full">
@@ -34,6 +38,8 @@ const DBHome = () => {
                   "Curry",
                   "Bread",
                   "Chinese",
+                  "Chips",
+                  "Biscuits",
                 ],
                 datasets: [
                   {
@@ -45,8 +51,10 @@ const DBHome = () => {
                       fruits?.length,
                       rice?.length,
                       curry?.length,
-                      chinese?.length,
                       bread?.length,
+                      chinese?.length,
+                      chips?.length,
+                      biscuits?.length,
                     ],
                   },
                 ],
