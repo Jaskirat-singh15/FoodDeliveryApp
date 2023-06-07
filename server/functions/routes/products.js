@@ -179,7 +179,7 @@ router.get("/getCartItems/:user_id", async (req, res) => {
   })();
 });
 
-router.post("/create-checkout-session", async (req, res) => {
+router.post("/create-checkout-session", async (req, res) => {  // card -> 4242 4242 4242
   const customer = await stripe.customers.create({
     metadata: {
       user_id: req.body.data.user.user_id,
@@ -194,7 +194,7 @@ router.post("/create-checkout-session", async (req, res) => {
         currency: "inr",
         product_data: {
           name: item.product_name,
-          images: [item.imageURL],
+          images: [item.imageURL],      // use url shortener for deployment
           metadata: {
             id: item.productId,
           },
@@ -261,9 +261,11 @@ router.post("/create-checkout-session", async (req, res) => {
 
   res.send({ url: session.url });
 });
-let endpointSecret;
-//  endpointSecret= process.env.WEBHOOK_SECRET;
-router.post(
+
+
+let endpointSecret=  process.env.WEBHOOK_SECRET;
+router.post(                                                             // stripe listen --forward-to http://127.0.0.1:5001/feastexpress-4b58f/us-central1/app/api/products/webhook
+                                                                           // stripe trigger payment_intent.succeeded
   "/webhook",
   express.raw({ type: "application/json" }),
   (req, res) => {

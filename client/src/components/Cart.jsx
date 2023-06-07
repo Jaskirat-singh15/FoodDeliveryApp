@@ -70,7 +70,7 @@ const Cart = () => {
                   <CardItemCart key={i} index={i} data={item} />
                 ))}
             </div>
-            <div className="bg-zinc-800 rounded-t-[60px] h-[35%] w-full flex flex-col items-center px-4 py-6 gap-24">
+            <div className="bg-zinc-800 rounded-t-[60px] h-[45%] w-full flex flex-col items-center px-4 py-6 gap-20">
               <div className="w-full flex items-center justify-evenly">
                 <p className="text-3xl text-zinc-500 font-semibold">Total</p>
                 <p className="text-3xl text-orange-500 font-semibold flex items-center justify-center gap-1">
