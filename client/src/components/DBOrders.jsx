@@ -2,7 +2,7 @@ import React,{useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllOrder } from "../api";
 import { setOrders } from "../context/actions/ordersAction";
-import {OrderData} from "../components";
+import {OrderData, Spinner} from "../components";
 
 const DBOrders = () => {
   const orders = useSelector((state) =>state.orders);
@@ -19,7 +19,7 @@ const DBOrders = () => {
     
     {orders ?(<>{orders.map((item,i) =>(
       <OrderData key = {i} index={i} data={item} admin ={true}  />
-    ))} </> ): (<><h1 className="text-[72px] text-headingColor font-bold ">Nooo Data</h1></>)}
+    ))} </> ): (<><Spinner></Spinner></>)}
     </div>;
 };
 
