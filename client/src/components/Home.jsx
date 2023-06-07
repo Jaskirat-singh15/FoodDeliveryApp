@@ -9,7 +9,11 @@ import { formControlClasses } from "@mui/material";
 
 
 const Home = () => {
-    
+    const scrollDown = () => {
+        const footerElement = document.getElementById('filterSec');
+        footerElement.scrollIntoView({ behavior: 'smooth' });
+    };
+
     return (
         <motion.div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="flex flex-col items-start justify-start gap-6">
@@ -26,12 +30,14 @@ const Home = () => {
                     </span>
                 </p>
                 <p className=" text-textColor text-lg">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima velit
+                    {/* Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima velit
                     eaque fugit distinctio est nam voluptatum architecto, porro iusto
                     deserunt recusandae ipsa minus eos sunt, dolores illo repellat facere
-                    suscipit!
+                    suscipit! */}
+                    We offer a wide variety of fresh fruits and delicious food items delivered right at your doorstep. Whether you're looking for healthy snacks or indulgent treats, we have something for everyone.
+                    <br /> Start exploring now and satisfy your cravings with our mouthwatering selections!
                 </p>
-                <motion.button {...buttonClick} className="bg-gradient-to-bl from-orange-400 to-orange-600 px-4 py-2 rounded-xl text-black text-base font-semibold">Order Now</motion.button>
+                <motion.button {...buttonClick} className="bg-gradient-to-bl from-orange-400 to-orange-600 px-4 py-2 rounded-xl text-black text-base font-semibold" onClick={scrollDown}>Order Now</motion.button>
             </div>
             <div className="py-2 flex-1 flex items-center justify-end relative">
                 <img

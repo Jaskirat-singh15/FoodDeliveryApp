@@ -15,13 +15,13 @@ const Slider = () => {
     }, [products]);
 
     return (
-        <div className='w-full pt-24'>
+        <div className='w-full pt-14'>
             <Swiper
                 slidesPerView={4}
                 centeredSlides={false}
-                spaceBetween={30}
+                spaceBetween={60}
                 grabCursor={true}
-                className="mySwiper"
+                className="mySwiper overflow-x-scroll"
             >
                 {fruits && fruits.map((data, i) =>
                     <SwiperSlide key={i} >

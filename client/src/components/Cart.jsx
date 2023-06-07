@@ -28,17 +28,17 @@ const Cart = () => {
     }
   }, [cart]);
 
-  const handleCheckOut =  ()=>{
-    const data ={
-      user:user,
-      cart:cart,
+  const handleCheckOut = () => {
+    const data = {
+      user: user,
+      cart: cart,
       total: total,
     }
 
-    axios.post(`${baseURL}/api/products/create-checkout-session`,{data}).then( (res)=>{
-        console.log(res);
-        window.location.href = res.data.url;
-      }
+    axios.post(`${baseURL}/api/products/create-checkout-session`, { data }).then((res) => {
+      console.log(res);
+      window.location.href = res.data.url;
+    }
     ).catch((err) => console.log(err));
   };
 
@@ -47,7 +47,7 @@ const Cart = () => {
       {...slideIn}
       className="fixed z-50 top-0 right-0 w-300 md:w-508 bg-lightOverlay backdrop-blur-md shadow-md h-screen"
     >
-      <div className="w-full flex items-center justify-between py-4 pb-12 px-6">
+      <div className="w-full flex items-center justify-between py-4 px-6">
         <motion.i
           {...buttonClick}
           className="cursor-pointer"
@@ -63,14 +63,14 @@ const Cart = () => {
       <div className="flex-1 flex flex-col items-start justify-start rounded-t-3xl bg-zinc-900 h-full py-6 gap-3 relative">
         {cart && cart?.length > 0 ? (
           <>
-            <div className="flex flex-col w-full items-start justify-start gap-3 h-[65%] overflow-y-scroll scrollbar-none px-4">
+            <div className="flex flex-col w-full items-start justify-start gap-3 h-[63%] overflow-y-scroll scrollbar-none px-4">
               {cart &&
                 cart?.length > 0 &&
                 cart?.map((item, i) => (
                   <CardItemCart key={i} index={i} data={item} />
                 ))}
             </div>
-            <div className="bg-zinc-800 rounded-t-[60px] h-[35%] w-full flex flex-col items-center px-4 py-6 gap-24">
+            <div className="bg-zinc-800 rounded-t-[60px] h-[27%] w-full flex flex-col items-center px-4 py-6 gap-5">
               <div className="w-full flex items-center justify-evenly">
                 <p className="text-3xl text-zinc-500 font-semibold">Total</p>
                 <p className="text-3xl text-orange-500 font-semibold flex items-center justify-center gap-1">
@@ -79,7 +79,7 @@ const Cart = () => {
               </div>
               <motion.div
                 {...buttonClick}
-                className="bg-orange-400 w-[70%] px-4 py-3 text-xl text-headingColor font-semibold hover:bg-orange-500 drop-shadow-md rounded-2xl"
+                className="bg-orange-400 w-[55%] px-4 py-3 text-xl text-headingColor font-bold hover:bg-orange-500 drop-shadow-md rounded-2xl text-center cursor-pointer"
                 onClick={handleCheckOut}
               >
                 Check Out
