@@ -10,7 +10,7 @@ const FilterSection = () => {
     const [category, setCategory] = useState("fruits");
     const products = useSelector((state) => state.products);
     return (
-        <motion.div className="w-full flex items-start justify-start flex-col">
+        <motion.div className="w-full flex items-start justify-start flex-col" id='filterSec'>
             <div className="w-full flex items-start justify-between">
                 <div className="flex flex-col items-start justify-start gap-1">
                     <p className="text-2xl text-headingColor font-bold"> Our Hot Dishes
@@ -18,7 +18,7 @@ const FilterSection = () => {
                     <div className="w-40 h-1 rounded-md bg-orange-500"></div>
                 </div>
             </div>
-            <div className='w-full overflow-x-scroll pt-6 flex items-center justify-center gap-6 py-8'>
+            <div className='w-full overflow-x-scroll pt-6 flex items-center justify-start gap-6 py-8'>
                 {statuses && statuses.map((data, i) => (
                     <FilterCard data={data} category={category} setCategory={setCategory} index={i} />
                 ))}
