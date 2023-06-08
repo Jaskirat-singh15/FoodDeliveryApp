@@ -338,7 +338,7 @@ const createOrder = async (customer, intent, res) => {
     console.log(err);
   }
 };
-const deleteCart = async (userId, items) => {
+const deleteCart = async (userId, items) => {                             // if payment is successful, delete the cart items
   // console.log(userId);
   console.log("**************************************");
   items.map(async (data) => {
