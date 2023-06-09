@@ -164,31 +164,3 @@ const Header = () => {
 
 export default Header;
 
-<motion.div className="px-6 py-4 w-48 bg-lightOverlay backdrop-blur-md rounded-md shadow-md absolute top-12 right-0 flex flex-col gap-4">
-  <Link
-    className="hover: text-red-500 text-xl text-textColor"
-    to={"/dashboard/home"}
-  >
-    Dashboard
-  </Link>
-  <Link className="hover: text-red-500 text-xl text-textColor" to={"/profile"}>
-    My Profile{" "}
-  </Link>
-
-  <Link
-    className="hover: text-red-500 text-xl text-textColor"
-    to={"/user-orders"}
-  >
-    Orders
-  </Link>
-  <hr />
-  <motion.div
-    {...buttonClick}
-    className="group flex items-center px-3 py-2 rounded-md shadow-md bg-gray-100 hover:bg-gray-200 gap-3"
-  >
-    <MdLogout className="text-2xl text-textColor group-hover::text-headingColor" />
-    <p className="text-textColor text-xl group-hover:text-headingColor ">
-      Signout
-    </p>
-  </motion.div>
-</motion.div>;
