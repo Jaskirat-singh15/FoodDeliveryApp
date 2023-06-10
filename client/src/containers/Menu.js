@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import "./Menu.css";
-import items from '../components/Data.js';
 import Categories from '../components/Categories';
 import MenuItems from '../components/MenuItems';
 import Header from '../components/Header';
