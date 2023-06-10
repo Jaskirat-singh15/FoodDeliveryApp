@@ -55,14 +55,7 @@ const Header = () => {
           >
             Menu
           </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? isActiveStyles : isNotActiveStyles
-            }
-            to={"/services"}
-          >
-            services
-          </NavLink>
+          
           <NavLink
             className={({ isActive }) =>
               isActive ? isActiveStyles : isNotActiveStyles
@@ -107,7 +100,7 @@ const Header = () => {
 
                   {console.log("testing", user, process.env.REACT_APP_ADMIN_ID)}
 
-                  {user?.user_id === process.env.REACT_APP_ADMIN_ID && (
+                  {user?.user_id === "UQiwFqWvNeOSz0nyo93EmsefcHs1" && (
                     <Link
                     className="hover:text-red-500 text-xl text-textColor"
                     to={"/dashboard/home"}

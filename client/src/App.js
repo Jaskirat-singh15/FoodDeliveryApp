@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Dashboard, Login, Main, Menu, Services } from "./containers";
+import { Dashboard, Login, Main, Menu } from "./containers";
 import { getAuth } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCartItems, validateUserJWTToken } from "./api";
@@ -57,7 +57,6 @@ const App = () => {
         <Route path="/checkout-success" element={<CheckOutSuccess />} />
         <Route path="/user-orders" element={<UserOrder/>}/>
         <Route path="/menu" element={<Menu />}/>
-        <Route path="/services" element={<Services />}/>
 
       </Routes>
       {alert?.type && (
