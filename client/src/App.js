@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Aboutus, Dashboard, Login, Main } from "./containers";
+import { Dashboard, Login, Main, Menu, Aboutus } from "./containers";
 import { getAuth } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCartItems, validateUserJWTToken } from "./api";
@@ -10,6 +10,7 @@ import { fadeInOut } from "./animations";
 import { motion } from "framer-motion";
 import { Alert, MainLoader, CheckOutSuccess, UserOrder, Profile } from "./components";
 import { setCartItems } from "./context/actions/cartActions";
+
 const App = () => {
   const firebaseAuth = getAuth(app);
   const [isLoading, setIsLoading] = useState(false);
@@ -55,8 +56,11 @@ const App = () => {
         <Route path="/aboutus" element={<Aboutus />} />
         <Route path="/dashboard/*" element={<Dashboard />} />
         <Route path="/checkout-success" element={<CheckOutSuccess />} />
-        <Route path="/user-orders" element={<UserOrder />} />
+        <Route path="/user-orders" element={<UserOrder/>}/>
+        <Route path="/menu" element={<Menu />}/>
         <Route path="/profile" element={<Profile />} />
+        <Route path="/aboutus" element={<Aboutus />} />
+
       </Routes>
       {alert?.type && (
         <Alert type={alert?.type} message={alert?.message}>

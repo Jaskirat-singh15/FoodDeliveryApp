@@ -23,4 +23,7 @@ export { default as OrderData } from "./OrderData";
 export { default as Cart } from "./Cart";
 export { default as CheckOutSuccess } from "./CheckOutSuccess";
 export { default as UserOrder } from "./UserOrder";
+export { default as Categories } from "./Categories";
+export { default as MenuItems } from "./MenuItems";
+
 export { default as Profile } from "./Profile";
