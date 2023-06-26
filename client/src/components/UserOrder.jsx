@@ -17,17 +17,17 @@ const UserOrder = () => {
       // console.log("in use effect if",order);
       getAllOrder().then((data)=>{
         dispatch(setOrders(data));
-        setuserOrders(data.filter((data) => data.userId === user.user_id));
+        setuserOrders(data.filter((item) => item.userId === user?.user_id));
       });
     }else{
-      setuserOrders(order.filter((data) => data.userId === user.user_id));
+      setuserOrders(order.filter((item) => item.userId === user?.user_id));
     }
   },[order])
   return (
     <main className='w-screen min-h-screen flex items-center justify-start flex-col bg-primary'>
       <Header/>
       <div className='w-full flex flex-col items-start justify-center mt-40 px-6 md:px-24 2xl:px-96 gap-12 pb-24'>
-      {userOrders ? (userOrders.map((item,i)=>(
+      {userOrders?.length>0 ? (userOrders.map((item,i)=>(
         <OrderData key={i} index={i} data = {item} admin={false} />))) : (<>
         <h1 className='text-[72px] text-headingColor fond-bold '>NO Data </h1>
         </>
